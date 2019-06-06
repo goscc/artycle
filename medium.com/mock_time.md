@@ -1,7 +1,7 @@
 # Mocking time with Go
 [原文地址（https://medium.com/agrea-technogies/mocking-time-with-go-a89e66553e79）](https://medium.com/agrea-technogies/mocking-time-with-go-a89e66553e79)
 
-我经常发现一些开发人员在处理程序中“时间”问题付出较多的努力，所以我想在下面提出一些关于我的建议。
+我经常发现开发人员会在编写关于`time`相关代码的测试时遇到各种困难，所以我想在下面提出一些关于我的建议。
 譬如我们需要测试下面这段代码
 ```go
 import (

@@ -90,5 +90,12 @@ func TestPing(t *testing.T) {
 + 首先，我设置了在我的map中设置了两种测试情况，第一个测试数据库不返回错误，第二个返回错误。
 + 我定义了一个`storage`变量，类型为`*mockStorager`，在接下来我会解释为什么会这么做。同时可以注意到我定义了输入的参数和对应的返回值。
 + 然后我验证了方法的返回值
-+ `storage.AssertExpectations(t)`
++ `storage.AssertExpectations(t)`判断所有通过`storage`mock的函数返回值，是否全部都调用了。在这个这段代码中`Cmd("INCR", "ping:count")`被调用调用，并且只被调用一次。
+
+现在，`*mockStorager`是我通过(mockery)[https://github.com/vektra/mockery]产生出的一个struct，（mockery是一个自动生成mock struct的工具，如果你没有用过这个，请仔细阅读）
+
+```
+mockery -name storager -inpkg .
+```
+
 

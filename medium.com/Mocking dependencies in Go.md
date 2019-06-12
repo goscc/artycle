@@ -94,7 +94,7 @@ func TestPing(t *testing.T) {
 
 现在，`*mockStorager`是我通过[mockery](https://github.com/vektra/mockery)产生出的一个struct，（mockery是一个自动生成mock struct的工具，如果你没有用过这个，请仔细阅读）。
 
-它可以基于任何一个interface`interface`生成一个可以使用的mock struct，命令如下：
+它可以基于任何一个`interface`生成一个可以使用的mock struct，命令如下：
 
 ```
 mockery -name storager -inpkg .

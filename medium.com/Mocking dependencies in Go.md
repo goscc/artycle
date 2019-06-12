@@ -40,7 +40,7 @@ func (h *Handler) Ping() (string, error) {
     return "pong", nil
 }
 ```
-现在我们又一个`storager`的*interface*，这个*interface*定义了我们访问Redis的入参和出参。
+现在我们有一个`storager`的*interface*，这个*interface*定义了我们访问Redis的入参和出参。
 再让我们看我们需要怎么做这个单元测试
 ```golang
 import (

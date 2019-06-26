@@ -33,7 +33,9 @@ Golang的可赋值性规则，在一些情况下允许分配不同类型的值�
 ```golang
 type T struct {
     name string
-}func main() {
+}
+
+func main() {
     v1 := struct{ name string }{"foo"}
     fmt.Printf("%T\n", v1) // struct { name string }
     var v2 T
@@ -46,7 +48,7 @@ type T struct {
 
 ---
 
-首先假设我们有两个接口类型的变量，并且我们想将一个分配给另一个（代码如下）：
+首先假设我们有两个接口类型的变量，并且我们想将一个赋值给另一个（代码如下）：
 
 ```golang
 type I1 interface {
@@ -254,7 +256,9 @@ type I interface {
 }
 type T struct{}
 
-func (T) M() {}func main() {
+func (T) M() {}
+
+func main() {
     var v1 I = T{}
     v2 := v1.(T)
     fmt.Printf("%T\n", v2) // main.T
@@ -272,7 +276,9 @@ type T1 struct{}
 
 func (T1) M() {}
 
-type T2 struct{}func main() {
+type T2 struct{}
+
+func main() {
     var v1 I = T1{}
     v2 := v1.(T2)
     fmt.Printf("%T\n", v2)
@@ -380,7 +386,9 @@ type I2 interface {
 
 type T struct {}
 
-func (T) M() {}func main() {
+func (T) M() {}
+
+func main() {
     var v1 I1 = T{}
     var v2 I2
     v2, ok := v1.(I2)
@@ -436,8 +444,9 @@ type I2 interface {
     M2()
 }
 
-type T2 struct{}func (T2) M1() {}
+type T2 struct{}
 
+func (T2) M1() {}
 
 func (T2) M2() {}
 
@@ -511,7 +520,9 @@ func (T1) M1() {}
 
 type T2 struct{}
 
-func (T2) M1() {}func main() {
+func (T2) M1() {}
+
+func main() {
     var v I1 = T2{}
     switch v.(type) {
     case nil:

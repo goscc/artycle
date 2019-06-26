@@ -59,7 +59,9 @@ type I2 interface {
     M1()
 }
 
-type T struct{}func (T) M1() {}func main() {
+type T struct{}func (T) M1() {}
+
+func main() {
     var v1 I1 = T{}
     var v2 I2 = v1
     _ = v2

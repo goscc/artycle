@@ -59,7 +59,9 @@ type I2 interface {
     M1()
 }
 
-type T struct{}func (T) M1() {}
+type T struct{}
+
+func (T) M1() {}
 
 func main() {
     var v1 I1 = T{}
@@ -68,7 +70,7 @@ func main() {
 }
 ```
 
-这种方式是简单的，程序也可以正常的工作。第三种赋值情形适用于这里：
+这种方式比较简单，并且程序也可以正常的工作。在golang的可赋值条件中(https://golang.org/ref/spec#Assignability)中，第三种赋值情形适用于这里：
 
 **T is an interface type and x implements T.**
 

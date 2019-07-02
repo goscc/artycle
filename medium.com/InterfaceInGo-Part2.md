@@ -74,7 +74,7 @@ func main() {
 
 **T is an interface type and x implements T.**
 
-这是因为变量*v1*的类型实现了*I2*的接口。不管这些类型的结构如何。（源码如下）
+这是因为变量*v1*的类型实现了*I2*的接口中的方法。（源码如下）
 
 ```golang
 type I1 interface {

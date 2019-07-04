@@ -74,7 +74,7 @@ func main() {
 
 **T is an interface type and x implements T.**
 
-这是因为变量*v1*的类型实现了*I2*的接口中的方法。（源码如下）
+这是因为变量*v1*的类型实现了*I2*的接口中的M1，M2方法。（源码如下）
 
 ```golang
 type I1 interface {
@@ -203,6 +203,7 @@ type I interface {
 }
 
 type T struct {}
+
 func (T) M() {}
 
 func main() {
@@ -258,6 +259,7 @@ v.(T)
 type I interface {
     M()
 }
+
 type T struct{}
 
 func (T) M() {}
@@ -349,7 +351,7 @@ func main() {
 
 ### 接口类型
 
-在大多数情况下使用类型断言是没问题的。golang还允许传递接口类型。它会检查动态类型是否满足接口的要求，并且返回该接口类型值的值。在转换条约中，传递给类型断言的接口方法集合不用必须是变量`v`类型的子集（代码如下）：
+在大多数情况下使用类型断言是没问题的。golang还允许传递接口类型。它会检查动态类型是否满足接口的要求，并且返回该接口类型值的值。在转换规则中，传递给类型断言的接口方法集合不用必须是变量`v`类型的子集（代码如下）：
 
 ```golang
 type I1 interface {
@@ -422,13 +424,13 @@ func main() {
 }
 ```
 
-当开始运行这段程序时，程序将会恐慌。
+当开始运行这段程序时，程序将会挂掉，并且有如下提示。
 
 ```golang
 panic: interface conversion: main.I is nil, not main.T
 ```
 
-前面介绍的多值类型则可以当`v`是nil的时候，避免出现恐慌(panic)。
+前面介绍的多值类型则可以当`v`是nil的时候，避免程序崩溃。
 
 ## 类型区别（Type switch）
 
@@ -507,7 +509,7 @@ func main() {
 }
 ```
 
-这段程序不会恐慌，他会成功的执行完。
+这段程序不会挂掉，他会成功的执行完。
 
 ### 每个case多种类型
 
@@ -568,7 +570,7 @@ case *T2:
 }
 ```
 
-这段代码会打印`*main.T2 is nil: true`，所以`t`的类型是case的子句。如果在一个单一的case子句有，包含不止一种类型，那么`t`的类型将会和`v`一样（代码如下）：
+这段代码会打印`*main.T2 is nil: true`，所以`t`的类型是case的子句，在这里就是`*T2`类型。如果在一个单一的case子句包含不止一种类型，那么`t`的类型将会和`v`一样（代码如下）：
 
 ```golang
 var p *T2
@@ -602,7 +604,7 @@ case T1:
 
 ### 可选简单的语句（optional simple statement）
 
-guard可以用一个简单的语句，类似短变量声明。（代码如下）：
+guard是一个简单的语句，类似短变量声明。（代码如下）：
 
 ```golang
 var v I1 = T1{}
